@@ -6,4 +6,6 @@ public class Main {
         EstruturaElementar e = new ListaLigada();
         e.insereInicio(0);
     }
+
+    
 }

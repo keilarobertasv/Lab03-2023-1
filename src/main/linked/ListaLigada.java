@@ -12,14 +12,32 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public boolean buscaElemento(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaElemento'");
+        No procura = cabeca;
+        while(procura != null){
+            if(procura.getValor() == valor){
+             return true;
+            }   
+         No no3 = procura.getProximo();
+        
+
+        }
+         return false;
+       
     }
 
     @Override
     public int buscaIndice(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaIndice'");
+        No novo = this.cabeca;
+        int ind = 0;
+        while( novo != null){
+           if(novo.getValor() == valor){
+             return ind;
+           }
+        novo = novo.getProximo();
+        ind++;
+        }
+        return 0;
+        
     }
 
     @Override
@@ -54,20 +72,41 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void insereElementoPosicao(int valor, int buscaIndice) {
-        // TODO Auto-generated method stub
+        
         throw new UnsupportedOperationException("Unimplemented method 'insereElementoPosicao'");
     }
 
     @Override
     public void insereInicio(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereInicio'");
+        if (this.cabeca == null){
+            this.cabeca = new No(valor);    
+        }
+        else{
+            No n = new No(valor);
+            n.setProximo(this.cabeca);
+            this.cabeca = n;
+        }
+        
     }
 
     @Override
     public void insereFim(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereFim'");
+        No no1 = new No(valor);
+        if (this.cabeca == null){
+            this.cabeca = no1;
+        }
+        else{
+            No no2 = this.cabeca;
+            while(no2.getProximo()!= null){
+                no2 = no2.getProximo();
+            }
+            no2.setProximo(no1); 
+         
+            
+        }
+        
+
+
     }
 
     @Override
