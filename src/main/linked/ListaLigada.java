@@ -64,15 +64,28 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public int predecessor(int valor) {
-        throw new UnsupportedOperationException("Unimplemented method 'predecessor'");
-       
-
+        No at = this.cabeca;
+        int predecessor = Integer.MIN_VALUE;
+        while(at != null){
+            if(at.getValor() == valor){
+                return predecessor;
+            }
+            predecessor = at.getValor();
+            at = at.getProximo();
+        }
+        return Integer.MIN_VALUE;
     }
 
     @Override
     public int sucessor(int valor) {
-        throw new UnsupportedOperationException("Unimplemented method 'sucessor'");
-            
+        No at = this.cabeca;
+        while(at != null && at.getProximo()!= null){
+            if(at.getValor() == valor){
+                return at.getProximo().getValor();
+            }
+            at = at.getProximo();
+        }
+           return valor; 
     } 
 
 
@@ -145,22 +158,30 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void remove(int valor) {
+            // Verifica se a posição é inválida (menor que 0)
+            if (valor < 0) {
+                System.out.println("Tente novamente");
+                return;
+            }
+            if (valor == 0) {
+                this.cabeca = this.cabeca.getProximo();
+                return;
+            }
+        
+            No at = this.cabeca;
+            No predecessor = null;
+            int ind = 0;
 
-       if (this.cabeca.getValor() == (valor)){
-           this.cabeca = this.cabeca.getProximo();
-           return;
-       }
-
-       No at = this.cabeca;
-       No predecessor = null;
-
-       while(at != null && at.getValor()!= valor){
-         predecessor = at;
-         at = at.getProximo();
-       }
-       if (at == null){
-         predecessor.setProximo(at.getProximo());
-       }
+            while (at != null && ind < valor) {
+                predecessor = at;
+                at = at.getProximo();
+                ind++;
+            }
+            if (at != null) {
+                predecessor.setProximo(at.getProximo());}
+           
+        
+    
        
     }
 
